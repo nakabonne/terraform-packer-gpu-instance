@@ -27,7 +27,7 @@ data "amazon-ami" "ubuntu" {
 }
 
 source "amazon-ebs" "ubuntu22-ami" {
-  ami_name               = "learn-packer-linux-aws"
+  ami_name               = "ubuntu22-nvidia-driver"
   instance_type          = "g4dn.xlarge"
   region                 = "ap-northeast-1"
   source_ami             = data.amazon-ami.ubuntu.id
