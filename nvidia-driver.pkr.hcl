@@ -28,17 +28,19 @@ data "amazon-ami" "ubuntu" {
 
 source "amazon-ebs" "ubuntu22-ami" {
   ami_name               = "learn-packer-linux-aws"
-  instance_type          = "g4ad.xlarge"
+  instance_type          = "g4dn.xlarge"
   region                 = "ap-northeast-1"
   source_ami             = data.amazon-ami.ubuntu.id
   ssh_username           = "ubuntu"
   ssh_read_write_timeout = "5m" # To reconnect after packer hangs on a connection after a reboot.
 
+  # FIXME: Remove 
   assume_role {
     role_arn     = var.assume_role_arn
     session_name = "nvidia-driver-builder"
   }
 
+  # FIXME: Remove 
   temporary_iam_instance_profile_policy_document {
     Statement {
       Action   = ["s3:ListBucket"]
