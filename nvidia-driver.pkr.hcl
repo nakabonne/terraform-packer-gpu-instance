@@ -43,12 +43,12 @@ source "amazon-ebs" "ubuntu22-ami" {
     Statement {
       Action   = ["s3:ListBucket"]
       Effect   = "Allow"
-      Resource = ["arn:aws:s3:::arene-tools-team"]
+      Resource = ["arn:aws:s3:::ec2-linux-nvidia-drivers"]
     }
     Statement {
       Action   = ["s3:GetObject"]
       Effect   = "Allow"
-      Resource = ["arn:aws:s3:::arene-tools-team/*"]
+      Resource = ["arn:aws:s3:::ec2-linux-nvidia-drivers/*"]
     }
     Version = "2012-10-17"
   }
