@@ -17,15 +17,15 @@ data "amazon-ami" "ubuntu" {
   }
   most_recent = true
   owners      = ["099720109477"]
-  region      = var.aws_region
+  region      = "ap-northeast-1"
 }
 
-source "amazon-ebs" "ubuntu" {
-  ami_name      = "learn-packer-linux-aws"
-  instance_type = "g4ad.xlarge"
-  region        = "ap-northeast-1"
-  source_ami      = data.amazon-ami.ubuntu.id
-  ssh_username = "ubuntu"
+source "amazon-ebs" "ubuntu22-ami" {
+  ami_name               = "learn-packer-linux-aws"
+  instance_type          = "g4ad.xlarge"
+  region                 = "ap-northeast-1"
+  source_ami             = data.amazon-ami.ubuntu.id
+  ssh_username           = "ubuntu"
   ssh_read_write_timeout = "5m" # To reconnect after packer hangs on a connection after a reboot.
 }
 
@@ -42,13 +42,13 @@ build {
 
   provisioner "shell" {
     pause_before = "120s"
-    script = "./scripts/install-driver.sh"
+    script       = "./scripts/install-driver.sh"
     # Because the script reboot at the end.
     expect_disconnect = true
   }
 
   provisioner "shell" {
     pause_before = "120s"
-    script = "./scripts/install-driver.sh"
+    script       = "./scripts/install-driver.sh"
   }
 }
