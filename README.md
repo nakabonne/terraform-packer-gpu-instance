@@ -9,6 +9,12 @@ Then run:
 direnv allow
 ```
 
+Install Packer
+
+```
+make ./bin/packer
+```
+
 ## Build
 
 Install plugin
