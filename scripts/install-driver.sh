@@ -13,7 +13,10 @@ blacklist nvidiafb
 blacklist rivatv
 EOF
 
-sudo echo GRUB_CMDLINE_LINUX="rdblacklist=nouveau" >> /etc/default/grub
+cat << EOF | sudo tee --append /etc/default/grub
+GRUB_CMDLINE_LINUX="rdblacklist=nouveau"
+EOF
+
 sudo update-grub
 
 # Downlad driver
