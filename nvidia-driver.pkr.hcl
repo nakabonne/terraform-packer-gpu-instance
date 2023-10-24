@@ -74,6 +74,6 @@ build {
 
   provisioner "shell" {
     pause_before = "120s"
-    script       = "./scripts/install-driver.sh"
+    script       = "./scripts/install-nvidia-container-toolkit.sh"
   }
 }
