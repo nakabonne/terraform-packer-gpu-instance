@@ -2,7 +2,7 @@
 
 set -e
 
-sudo apt-get install -y gcc make linux-headers-$(uname -r)
+sudo apt-get install -y gcc make linux-headers-$(uname -r) awscli
 
 # Disable the nouveau open source driver for NVIDIA graphics cards.
 cat << EOF | sudo tee --append /etc/modprobe.d/blacklist.conf

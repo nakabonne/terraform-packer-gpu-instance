@@ -8,6 +8,12 @@ packer {
   }
 }
 
+variable "assume_role_arn" {
+  type        = string
+  default     = ""
+  description = "AWS accounts ARN which we run Packer build"
+}
+
 data "amazon-ami" "ubuntu" {
   filters = {
     virtualization-type = "hvm"
@@ -27,6 +33,25 @@ source "amazon-ebs" "ubuntu22-ami" {
   source_ami             = data.amazon-ami.ubuntu.id
   ssh_username           = "ubuntu"
   ssh_read_write_timeout = "5m" # To reconnect after packer hangs on a connection after a reboot.
+
+  assume_role {
+    role_arn     = var.assume_role_arn
+    session_name = "nvidia-driver-builder"
+  }
+
+  temporary_iam_instance_profile_policy_document {
+    Statement {
+      Action   = ["s3:ListBucket"]
+      Effect   = "Allow"
+      Resource = ["arn:aws:s3:::arene-tools-team"]
+    }
+    Statement {
+      Action   = ["s3:GetObject"]
+      Effect   = "Allow"
+      Resource = ["arn:aws:s3:::arene-tools-team/*"]
+    }
+    Version = "2012-10-17"
+  }
 }
 
 build {

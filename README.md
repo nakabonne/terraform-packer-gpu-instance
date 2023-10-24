@@ -1,5 +1,16 @@
 # packer-nvidia-driver
 
+## Prerequisite
+
+Copy `.envrc.example` to `.envrc` and populate environment variables.
+Then run:
+
+```
+direnv allow
+```
+
+## Build
+
 Install plugin
 
 ```
@@ -16,5 +27,5 @@ packer validate .
 Build
 
 ```
-packer build nvidia-driver.pkr.hcl
+packer build --var-file=release.pkrvars.hcl nvidia-driver.pkr.hcl
 ```
