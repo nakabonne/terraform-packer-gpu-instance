@@ -33,5 +33,5 @@ packer validate .
 Build
 
 ```
-packer build --var-file=release.pkrvars.hcl nvidia-driver.pkr.hcl
+packer build nvidia-driver.pkr.hcl
 ```
