@@ -10,7 +10,7 @@ Copy `.envrc.example` to `.envrc` and populate environment variables.
 cp .envrc.example .envrc
 ```
 
-Then run:
+Populate all required environment variables `.envrc`, and then run:
 
 ```
 direnv allow
