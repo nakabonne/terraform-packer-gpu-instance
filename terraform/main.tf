@@ -18,6 +18,6 @@ resource "aws_instance" "instance" {
   instance_type = var.instance_type
 
   tags = {
-    Name = "GPUInstance"
+    Name = "nvidia-driver"
   }
 }
