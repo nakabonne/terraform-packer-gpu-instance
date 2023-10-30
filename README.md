@@ -2,6 +2,8 @@
 
 ## Prerequisite
 
+Install [direnv](https://direnv.net/).
+
 Copy `.envrc.example` to `.envrc` and populate environment variables.
 Then run:
 
@@ -9,29 +11,15 @@ Then run:
 direnv allow
 ```
 
-Install Packer
+## Packer Build
 
-```
+```bash
+# Install packer
 make ./bin/packer
-```
 
-## Build
-
-Install plugin
-
-```
+cd packer
 packer init .
-```
-
-Format and validate
-
-```
 packer fmt .
 packer validate .
-```
-
-Build
-
-```
 packer build nvidia-driver.pkr.hcl
 ```

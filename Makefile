@@ -1,4 +1,5 @@
 UNAME := $(shell uname)
+TERRAFORM_VERSION=1.5.3
 
 ./bin/packer:
 	@mkdir -p bin
@@ -11,5 +12,18 @@ else ifeq ($(UNAME), Darwin)
 	@chmod +x ./bin/packer
 else
 	@echo "Unsupported OS, please copy your local packer binary manually to ./bin/packer"
+	@exit 1
+endif
+
+./bin/terraform:
+	@mkdir -p bin
+ifeq ($(UNAME), Linux)
+	cd bin && curl -o terraform.zip https://releases.hashicorp.com/terraform/$(TERRAFORM_VERSION)/terraform_$(TERRAFORM_VERSION)_linux_386.zip && unzip terraform.zip && rm terraform.zip
+	@chmod +x ./bin/terraform
+else ifeq ($(UNAME), Darwin)
+	cd bin && curl -o terraform.zip https://releases.hashicorp.com/terraform/$(TERRAFORM_VERSION)/terraform_$(TERRAFORM_VERSION)_darwin_amd64.zip && unzip terraform.zip && rm terraform.zip
+	@chmod +x ./bin/terraform
+else
+	@echo "Unsupported OS, please copy your local terraform binary manually to ./bin/terraform"
 	@exit 1
 endif
