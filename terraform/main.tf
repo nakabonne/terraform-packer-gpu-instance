@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "instance" {
-  ami           = "ami-077902db38c83c654" # Update this whenever new AMI is created by Packer
+  ami           = var.ami_id
   instance_type = var.instance_type
 
   tags = {
